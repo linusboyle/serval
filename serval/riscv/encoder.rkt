@@ -28,6 +28,8 @@
 (define (encode-csr r)
   (define v
     (case r
+      [(time) #xc01]
+
       [(sstatus)    #x100]
       [(sedeleg)    #x102]
       [(sideleg)    #x103]
@@ -119,13 +121,15 @@
         [(fence) #f]
         [else (unsupported insn)])]
 
-    [(and (rv_r_insn? insn) (memv (rv_r_insn-op insn) '(sfence.vma mret wfi unimp)))
+    [(and (rv_r_insn? insn) (memv (rv_r_insn-op insn) '(sfence.vma mret sret wfi unimp)))
       (define op (rv_r_insn-op insn))
       (case op
         [(sfence.vma)
          (r-type #b0001001 (bv 0 5) (bv 0 5) #b000 (bv 0 5) #b1110011)]
         [(mret)
           (r-type #b0011000 (bv #b00010 5) (bv 0 5) #b000 (bv 0 5) #b1110011)]
+        [(sret)
+          (r-type #b0001000 (bv #b00010 5) (bv 0 5) #b000 (bv 0 5) #b1110011)]
         [(wfi)
           (r-type #b0001000 (bv #b00101 5) (bv 0 5) #b000 (bv 0 5) #b1110011)]
         [(unimp)

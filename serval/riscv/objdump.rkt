@@ -112,7 +112,7 @@
     [(list (and op 'c.unimp))
       (rv_cr_insn op #f #f)]
 
-    [(list (and op (or 'wfi 'sfence.vma 'unimp 'mret)) _ ...)
+    [(list (and op (or 'wfi 'sfence.vma 'unimp 'mret 'sret)) _ ...)
       (rv_r_insn op #f #f #f)]
 
     [(list (and op (or 'fence.i 'fence)) _ ...)

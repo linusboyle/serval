@@ -365,6 +365,6 @@
 
       [(hash-has-key? instructions pc)
         (define insn (hash-ref instructions pc))
-        (when (! (and (rv_r_insn? insn) (equal? (rv_r_insn-op insn) 'mret)))
+        (unless (and (rv_r_insn? insn) (or (equal? (rv_r_insn-op insn) 'mret) (equal? (rv_r_insn-op insn) 'sret)))
           (interpret-insn cpu (hash-ref instructions pc))
           (interpret-program cpu program))])))

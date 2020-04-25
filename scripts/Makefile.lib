@@ -55,6 +55,8 @@ TOOLPREFIX      := $(shell \
         then echo "$(ARCH)-unknown-elf-"; \
         elif which $(ARCH)-linux-gnu-gcc > /dev/null; \
         then echo "$(ARCH)-linux-gnu-"; \
+        elif which $(ARCH)-suse-linux-gcc > /dev/null; \
+        then echo "$(ARCH)-suse-linux-"; \
         else \
         echo "error: cannot find gcc for $(ARCH)" 1>&2; exit 1; fi)
 #endif
