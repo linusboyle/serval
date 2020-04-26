@@ -115,7 +115,7 @@
     [(list (and op (or 'wfi 'sfence.vma 'unimp 'mret 'sret)) _ ...)
       (rv_r_insn op #f #f #f)]
 
-    [(list (and op (or 'fence.i 'fence)) _ ...)
+    [(list (and op (or 'fence.i 'fence 'ecall)) _ ...)
       (rv_i_insn op #f #f #f)]
 
     ; Dst + 20-bit imm

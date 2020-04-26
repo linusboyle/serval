@@ -160,6 +160,7 @@
 (define (csr-set! cpu csr val)
   (core:bug-on (term? csr) #:msg (format "csr-set!: symbolic csr ~e" csr) #:dbg current-pc-debug)
   (case csr
+    [(time) null]
     [(sstatus) (set-csrs-mstatus! (cpu-csrs cpu) (bvand val sstatus-mask))]
     [(sedeleg) (set-csrs-sedeleg! (cpu-csrs cpu) val)]
     [(sideleg) (set-csrs-sideleg! (cpu-csrs cpu) val)]
@@ -213,6 +214,7 @@
 (define (csr-ref cpu csr)
   (core:bug-on (term? csr) #:msg (format "csr-ref: symbolic csr ~e" csr) #:dbg current-pc-debug)
   (case csr
+    [(time) (bv 0 (XLEN))]
     [(sstatus) (bvand sstatus-mask (csrs-mstatus (cpu-csrs cpu)))]
     [(sedeleg) (csrs-sedeleg (cpu-csrs cpu))]
     [(sideleg) (csrs-sideleg (cpu-csrs cpu))]

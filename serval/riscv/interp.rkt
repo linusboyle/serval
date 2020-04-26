@@ -130,7 +130,7 @@
   (case op
 
     ; Encoded as I-type instruction
-    [(fence.i fence)
+    [(fence.i fence ecall)
       (cpu-next! cpu size)]
 
     ; CSR reg
