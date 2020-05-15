@@ -16,7 +16,7 @@
     #:abs abs-function
     #:ri rep-invariant
     [args null]
-    [ce-handler (lambda (sol) (void))])
+    [ce-handler (lambda (s1 s2 sol) (void))])
 
   (define ri0 (rep-invariant impl-state))
 
@@ -45,7 +45,7 @@
   (check-unsat? (verify (assert (=> ri0 (apply && post-asserted)))))
 
   (let ([sol (verify (assert (=> (&& pre ri0) post)))])
-    (when (sat? sol) (ce-handler sol))
+    (when (sat? sol) (ce-handler spec-state (abs-function impl-state) sol))
     (check-unsat? sol))
 
   (check-unsat? (verify (assert (=> (&& pre ri0) ri1))))

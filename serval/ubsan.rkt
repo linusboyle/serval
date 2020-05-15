@@ -92,6 +92,7 @@
 
 (define __ubsan_handle_add_overflow (curryr handle-integer-overflow "+"))
 (define __ubsan_handle_sub_overflow (curryr handle-integer-overflow "-"))
+(define __ubsan_handle_negate_overflow (curryr handle-integer-overflow "-"))
 (define __ubsan_handle_mul_overflow (curryr handle-integer-overflow "*"))
 
 (define (__ubsan_handle_divrem_overflow lst lhs rhs)
